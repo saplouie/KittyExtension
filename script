@@ -239,7 +239,7 @@ $(document).ready(() => {
                 let background_color = getColor(cattributes[x].description)[0];
                 let color = background_color == 'white' ? 'rgba(0,0,0, 0.76)' : 'rgba(255,255,255, 0.98)';
                 if (eattribs[cattributes[x].description] == 1) {
-                    ul.innerHTML += "<li class='extAtt' style=\'background-color:"+background_color+"; color: "+color+"\'>"+cattributes[x].description+"**</li>";
+                    ul.innerHTML += "<li class='extAtt' style=\'background-color:"+background_color+"; color: "+color+"\'>"+cattributes[x].description+"💎</li>";
                 } else {
                     ul.innerHTML += "<li class='extAtt' style=\'background-color:"+background_color+"; color: "+color+"\'>"+cattributes[x].description+"</li>";
                 }
