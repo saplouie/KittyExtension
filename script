@@ -85,7 +85,7 @@ $(document).ready(() => {
         } else {
             storageTbl['id'+id] = cattributes;
             if (Object.keys(storageTbl).length > 1000) {
-                for (let first in storageTbl) break;
+                for (var first in storageTbl) break;
                 delete storageTbl[first];
             }
             localStorage.setItem('kittyExtensionTbl', JSON.stringify(storageTbl));
