@@ -2,8 +2,8 @@
 // ==UserScript==
 // @name         Crypto Kitty Info Extension
 // @namespace    https://github.com/HaJaeKyung/KittyExtension
-// @version      0.39
-// @description  Adds stat info to the site
+// @version      0.39 Mewtation Variant
+// @description  Adds stat info to the site. This version only shows Mewtation Jewels
 // @author       HaJaeKyung
 // @match        *.cryptokitties.co/*
 // @match        *kittytools.herokuapp.com/*
@@ -175,7 +175,10 @@ $(document).ready(() => {
             length:8
             */
             for (let ea of data.enhanced_cattributes) {
-                eattribs[ea.description] = ea.position;
+                // Set mewtation only if postion is the same as kitty id
+                if (stats.id == ea.kittyId) {
+                    eattribs[ea.description] =  ea.position;} else
+                    { eattribs[ea.description] = -1;}    
             }
             finalizeOverlay(data.enhanced_cattributes, element, stats);
             if (hasLocalStorage) {
@@ -240,6 +243,14 @@ $(document).ready(() => {
                 let color = background_color == 'white' ? 'rgba(0,0,0, 0.76)' : 'rgba(255,255,255, 0.98)';
                 if (eattribs[cattributes[x].description] == 1) {
                     ul.innerHTML += "<li class='extAtt' style=\'background-color:"+background_color+"; color: "+color+"\'>"+cattributes[x].description+"💎</li>";
+                } else if (eattribs[cattributes[x].description] ==-1) {
+                    ul.innerHTML += "<li class='extAtt' style=\'background-color:"+background_color+"; color: "+color+"\'>"+cattributes[x].description+"</li>";
+                } else if (eattribs[cattributes[x].description] <=10) {
+                    ul.innerHTML += "<li class='extAtt' style=\'background-color:"+background_color+"; color: "+color+"\'>"+cattributes[x].description+"👑</li>";
+                } else if (eattribs[cattributes[x].description] <=100) {
+                    ul.innerHTML += "<li class='extAtt' style=\'background-color:"+background_color+"; color: "+color+"\'>"+cattributes[x].description+"💜</li>";
+                } else if (eattribs[cattributes[x].description] <=500) {
+                    ul.innerHTML += "<li class='extAtt' style=\'background-color:"+background_color+"; color: "+color+"\'>"+cattributes[x].description+"💙</li>";
                 } else {
                     ul.innerHTML += "<li class='extAtt' style=\'background-color:"+background_color+"; color: "+color+"\'>"+cattributes[x].description+"</li>";
                 }
